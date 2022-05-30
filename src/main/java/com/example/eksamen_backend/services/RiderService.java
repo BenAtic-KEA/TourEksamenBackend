@@ -27,14 +27,15 @@ public class RiderService {
 
     }
 
-    public void addRider(RiderRequest rider) {
+    public RiderResponse addRider(RiderRequest rider) {
         Rider newRider = new Rider(rider.getName(),rider.getAge(),rider.getTime(),rider.getMountainPoints(),rider.getSprintPoints(),rider.getCountry());
         Team team = teamRepository.findById(rider.getTeamId()).orElseThrow(() -> new RuntimeException("Team not found"));
         newRider.setTeam(team);
-        riderRepository.save(newRider);
+        Rider riderResponse = riderRepository.save(newRider);
+        return new RiderResponse(riderResponse);
     }
 
-    public void updateRider(int id, RiderRequest rider) {
+    public RiderResponse updateRider(int id, RiderRequest rider) {
         Rider r = riderRepository.findById(id).orElseThrow(() -> new RuntimeException("Rider not found"));
 
         r.setAge(rider.getAge());
@@ -44,7 +45,8 @@ public class RiderService {
         r.setSprintPoints(rider.getSprintPoints());
         r.setTime(rider.getTime());
 
-        riderRepository.save(r);
+        Rider savedRider = riderRepository.save(r);
+        return new RiderResponse(savedRider);
     }
 
     public void deleteRider(int id) {
@@ -105,4 +107,6 @@ public class RiderService {
         return new RiderResponse(riderMostPoints);
 
     }
+
+
 }

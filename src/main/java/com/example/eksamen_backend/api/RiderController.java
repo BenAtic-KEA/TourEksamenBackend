@@ -3,7 +3,9 @@ package com.example.eksamen_backend.api;
 import com.example.eksamen_backend.dto.RiderRequest;
 import com.example.eksamen_backend.dto.RiderResponse;
 import com.example.eksamen_backend.services.RiderService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -33,13 +35,14 @@ public class RiderController {
         return riderService.getRidersByTeam(id);
     }
     @PostMapping()
-    public void addRider(@RequestBody RiderRequest rider) {
-        riderService.addRider(rider);
+    public RiderResponse addRider(@RequestBody RiderRequest rider) {
+        return riderService.addRider(rider);
     }
 
+
     @PutMapping("/{id}")
-    public void updateRider(@PathVariable("id") int id, @RequestBody RiderRequest rider) {
-        riderService.updateRider(id, rider);
+    public RiderResponse updateRider(@PathVariable("id") int id, @RequestBody RiderRequest rider) {
+        return riderService.updateRider(id, rider);
     }
 
     @DeleteMapping("/{id}")
