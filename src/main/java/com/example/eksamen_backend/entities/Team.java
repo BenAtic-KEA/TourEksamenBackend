@@ -36,16 +36,4 @@ public class Team {
             rider.setTeam(this);
         }
     }
-
-    public void removeRider(Rider rider){
-        this.riders.remove(rider);
-        rider.setTeam(null);
-    }
-
-    public void removeAllRiders(){
-        for(Rider rider : this.riders){
-            rider.setTeam(null);
-        }
-        this.riders.clear();
-    }
 }

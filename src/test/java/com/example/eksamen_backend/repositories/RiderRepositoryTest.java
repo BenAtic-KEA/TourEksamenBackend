@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ActiveProfiles("test")
 class RiderRepositoryTest {
     @Autowired
-    RiderRepository riderRepository;;
+    RiderRepository riderRepository;
 
     @Autowired
     TeamRepository teamRepository;

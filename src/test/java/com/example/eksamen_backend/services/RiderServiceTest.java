@@ -101,6 +101,6 @@ class RiderServiceTest {
         teamRepoSizeAfter = teamRepository.findAll().size();
         //assert
         assertTrue(riderReposizeBefore > riderReposizeAfter);
-        assertTrue(teamRepoSizeBefore == teamRepoSizeAfter);
+        assertEquals(teamRepoSizeBefore, teamRepoSizeAfter);
     }
 }

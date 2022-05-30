@@ -3,9 +3,7 @@ package com.example.eksamen_backend.api;
 import com.example.eksamen_backend.dto.RiderRequest;
 import com.example.eksamen_backend.dto.RiderResponse;
 import com.example.eksamen_backend.services.RiderService;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
