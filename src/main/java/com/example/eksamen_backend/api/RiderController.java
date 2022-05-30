@@ -46,4 +46,24 @@ public class RiderController {
     public void deleteRider(@PathVariable("id") int id) {
         riderService.deleteRider(id);
     }
+
+    @GetMapping("/yellow")
+    public RiderResponse fastestRider(){
+        return riderService.getRiderByFastestTime();
+    }
+
+    @GetMapping("/white")
+    public RiderResponse fastestYouthRider(){
+        return riderService.getRiderByYouthFastestTime();
+    }
+
+    @GetMapping("/mountain")
+    public RiderResponse mostMountainPoints(){
+        return riderService.getRiderMostMountainPoints();
+    }
+
+    @GetMapping("/sprint")
+    public RiderResponse mostSprintPoints(){
+        return riderService.getRiderMostSprintPoints();
+    }
 }

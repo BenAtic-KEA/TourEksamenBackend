@@ -59,4 +59,50 @@ public class RiderService {
     public List<RiderResponse> getRidersByTeam(int id) {
         return riderRepository.findRidersByTeamId(id).stream().map(RiderResponse::new).collect(Collectors.toList());
     }
+
+    public RiderResponse getRiderByFastestTime(){
+        List<Rider> riders = riderRepository.findAll();
+        Rider fastestRider = new Rider();
+        for(Rider rider : riders){
+            if(rider.getTime() < fastestRider.getTime() | fastestRider.getTime() == 0){
+                fastestRider = rider;
+            }
+        }
+        return new RiderResponse(fastestRider);
+    }
+
+    public RiderResponse getRiderByYouthFastestTime(){
+        List<Rider> riders = riderRepository.findAll();
+        Rider fastestYouthRider = new Rider();
+        for(Rider rider : riders){
+
+            if(rider.getTime() < fastestYouthRider.getTime() & rider.getAge() < 26 | fastestYouthRider.getTime() == 0 & rider.getAge() < 26){
+                fastestYouthRider = rider;
+            }
+        }
+        return new RiderResponse(fastestYouthRider);
+    }
+
+    public RiderResponse getRiderMostMountainPoints() {
+        List<Rider> riders = riderRepository.findAll();
+        Rider riderMostPoints = new Rider();
+        for(Rider rider : riders){
+            if(rider.getMountainPoints() > riderMostPoints.getMountainPoints() | riderMostPoints.getMountainPoints() == 0){
+                riderMostPoints = rider;
+            }
+        }
+        return new RiderResponse(riderMostPoints);
+    }
+
+    public RiderResponse getRiderMostSprintPoints() {
+        List<Rider> riders = riderRepository.findAll();
+        Rider riderMostPoints = new Rider();
+        for(Rider rider : riders){
+            if(rider.getSprintPoints() > riderMostPoints.getSprintPoints() | riderMostPoints.getSprintPoints() == 0){
+                riderMostPoints = rider;
+            }
+        }
+        return new RiderResponse(riderMostPoints);
+
+    }
 }
