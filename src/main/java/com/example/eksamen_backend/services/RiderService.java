@@ -28,10 +28,10 @@ public class RiderService {
     }
 
     public void addRider(RiderRequest rider) {
-        Team team = teamRepository.findById(rider.getTeamId()).get();
         Rider newRider = new Rider(rider.getName(),rider.getAge(),rider.getTime(),rider.getMountainPoints(),rider.getSprintPoints(),rider.getCountry());
-        team.addRider(newRider);
-        teamRepository.save(team);
+        Team team = teamRepository.findById(rider.getTeamId()).orElseThrow(() -> new RuntimeException("Team not found"));
+        newRider.setTeam(team);
+        riderRepository.save(newRider);
     }
 
     public void updateRider(int id, RiderRequest rider) {
