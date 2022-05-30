@@ -80,6 +80,7 @@ class RiderServiceTest {
         riderService.updateRider(rider1.getId(),updatedRider);
         repoSizeAfter = riderRepository.findAll().size();
         newName = riderRepository.findById(rider1.getId()).get().getName();
+
         //assert
 
         assertNotEquals(orgName,newName);
@@ -90,7 +91,16 @@ class RiderServiceTest {
     @Test
     void deleteRider() {
         //arrange
+        int riderReposizeBefore,riderReposizeAfter;
+        int teamRepoSizeBefore,teamRepoSizeAfter;
         //act
+        riderReposizeBefore = riderRepository.findAll().size();
+        teamRepoSizeBefore = teamRepository.findAll().size();
+        riderService.deleteRider(rider1.getId());
+        riderReposizeAfter = riderRepository.findAll().size();
+        teamRepoSizeAfter = teamRepository.findAll().size();
         //assert
+        assertTrue(riderReposizeBefore > riderReposizeAfter);
+        assertTrue(teamRepoSizeBefore == teamRepoSizeAfter);
     }
 }
