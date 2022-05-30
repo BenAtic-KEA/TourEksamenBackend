@@ -51,4 +51,12 @@ public class RiderService {
         Rider r = riderRepository.findById(id).orElseThrow(() -> new RuntimeException("Rider not found"));
         riderRepository.delete(r);
     }
+
+    public RiderResponse getRider(int id) {
+        return new RiderResponse(riderRepository.findById(id).orElseThrow(() -> new RuntimeException("Rider not found")));
+    }
+
+    public List<RiderResponse> getRidersByTeam(int id) {
+        return riderRepository.findRidersByTeamId(id).stream().map(RiderResponse::new).collect(Collectors.toList());
+    }
 }

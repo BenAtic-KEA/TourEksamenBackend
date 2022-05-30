@@ -23,7 +23,15 @@ public class RiderController {
         return riderService.getRiders();
     }
 
+    @GetMapping("/{id}")
+    public RiderResponse getRider(@PathVariable("id") int id) {
+        return riderService.getRider(id);
+    }
 
+    @GetMapping("/team/{id}")
+    public List<RiderResponse> getRidersByTeam(@PathVariable("id") int id) {
+        return riderService.getRidersByTeam(id);
+    }
     @PostMapping()
     public void addRider(@RequestBody RiderRequest rider) {
         riderService.addRider(rider);
